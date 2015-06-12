@@ -29,10 +29,10 @@ int main(int argc, char *argv[])
             }
             lines += 1;
         }
-        printf("%s: lines: %d, rasa %d\n", argv[a], lines, rasa);
+        printf("%s: lines %d, rasa %d\n", argv[a], lines, rasa);
         total_lines += lines;
         total_rasa += rasa;
     }
-    printf("total: lines: %d, rasa %d\n", total_lines, total_rasa);
+    printf("total: lines %d, rasa %d\n", total_lines, total_rasa);
     return 0;
 }
