@@ -4,9 +4,19 @@ import argparse, logging
 
 def calculateFileRasa(filePath):
     rowCount = 0
+    multiplier = 1
+    rasa = 0
+
     for line in open(filePath):
         rowCount += 1
-    return (rowCount, 0)
+        for char in line:
+            if '{' in char:
+                multiplier += 1
+            if ';' in char:
+                rasa += multiplier
+            if '}' in char:
+                multiplier -= 1
+    return (rowCount, rasa)
 
 
 def calculateRasa(filePaths):
@@ -16,8 +26,8 @@ def calculateRasa(filePaths):
         rowCount, rasa = calculateFileRasa(filePath)
         totalRows += rowCount
         totalRasa += rasa
-        print '%s: lines %d, RaSa: TBD' % (filePath, rowCount)
-    print 'total: lines %d, RaSa: TBD' % (totalRows)
+        print '%s: lines %d, RaSa: %d' % (filePath, rowCount, rasa)
+    print 'total: lines %d, RaSa: %d' % (totalRows, totalRasa)
 
 
 def main(args, loglevel):
