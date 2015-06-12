@@ -2,8 +2,10 @@
 
 timer=1;
 lines=0;
-rask=0;
+allRask=0;
 allLines=0;
+totalLines=0;
+totalRask=0;
 
 function DoRasa() {
     local file;
@@ -45,6 +47,9 @@ function DoRasa() {
         done
     done < "$file";
     ((rask += lines * timer));
+    ((totalLines += allLines))
+    ((totalRask += rask))
+    
     echo "$file: lines $allLines, Rasa $rask";
 }
 
@@ -52,4 +57,5 @@ while [ $# -gt 0 ]; do
     DoRasa $1
     shift;
 done
-
+echo "Total: lines $totalLines, Rasa $totalRask";
+    
