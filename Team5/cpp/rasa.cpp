@@ -5,7 +5,6 @@
 using namespace std;
 int main (int argc, char *argv[])
 {
- char Str[255];int i = 0;
  int depth = 1;
  int summaryRasa = 0;
  int totalLines = 0;
