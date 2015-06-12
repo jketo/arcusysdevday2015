@@ -5,12 +5,11 @@
 using namespace std;
 int main (int argc, char *argv[])
 {
- char Str[255];int i = 0;
  int depth = 1;
  int summaryRasa = 0;
  int totalLines = 0;
 
- for (i = 1; i < argc; i++) {
+ for (int i = 1; i < argc; i++) {
  	ifstream fin(argv[i], std::ios::in);
  	int rasa = 0;
  	int lines = 0;
@@ -25,6 +24,7 @@ int main (int argc, char *argv[])
 	 		case '\n': lines ++; break;
 	 	}
 	 }
+	 fin.close();
 	 std::cout << argv[i] << ": lines "<<lines<<", RaSa "<<rasa<<"\n";
 	 summaryRasa += rasa;
 	 totalLines += lines;
