@@ -3,20 +3,26 @@
 import sys
 
 
-def calculate_ras(java_file):
-    ras_count = 0
-    ras_mult = 1
-    for line in java_file:
+def calculate_rasa(java_file):
+    rasa_count = 0
+    rasa_mult = 1
+    for lines_0, line in enumerate(java_file):
         for char in line:
             if char == '{':
-                ras_mult += 1
+                rasa_mult += 1
             elif char == '}':
-                ras_mult -= 1
+                rasa_mult -= 1
             elif char == ';':
-                ras_count += ras_mult
-    return ras_count
+                rasa_count += rasa_mult
+    return lines_0 + 1, rasa_count
 
 
 if __name__ == "__main__":
+    total_lines = 0
+    total_rasa = 0
     for java_file in sys.argv[1:]:
-        print(calculate_ras(open(java_file, 'r')))
+        lines, rasa = calculate_rasa(open(java_file, 'r'))
+        total_lines += lines
+        total_rasa += rasa
+        print("{}: lines {}, rasa {}".format(java_file, lines, rasa))
+    print("total: lines {}, rasa {}".format(total_lines, total_rasa))
