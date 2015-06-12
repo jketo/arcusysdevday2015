@@ -26,7 +26,7 @@ function rasa($code, $depth)
 
             $block = readBlock(substr($code, $i));
             $i += strlen($block);
-            $rasa += rasa(substr($block, 1, strlen($block) - 2), $depth + 1);
+            $rasa += rasa($block, $depth + 1);
 
         } 
     }
