@@ -1,1 +1,1 @@
-($c,$o)=(0,0);$t=" lines:";$r=" RaSa:";foreach$f(@ARGV){($d,$m,$l,$i)=(1,1,0,0);open F,$f;while((read F,$d,1)!= 0){if($d=~/{/){$m++}if($d=~/}/){$m--}if($d=~/;/){$c+=$m;$i+=$m}if($d=~/\n/){$l++;$o++}}print$f,$t,$l,$r,$i,"\n";}print"total",$t,$o,$r,$c;
+$t=" lines ";$r=", RaSa ";foreach$f(@ARGV){$d=$m=1;$l=$i=0;open F,$f;while((read F,$d,1)!= 0){if($d=~/{/){$m++}if($d=~/}/){$m--}if($d=~/;/){$c+=$m;$i+=$m}if($d=~/\n/){$l++;$o++}}print$f,":",$t,$l,$r,$i,"\n";}print"total:",$t,$o,$r,$c;
