@@ -37,11 +37,11 @@ public class Analyzer {
                          buffer.append(argument).append(": ").append(LINES).append(result._1).append(RASA).append(result._2).append("\n");
                      }
                 } catch (IOException e) {
-                    buffer.append("Epic fail ").append(e.getMessage());
+                    buffer.append("Epic fail ").append(e.getMessage()).append("\n");
                     e.printStackTrace();
                 }
             } else {
-                buffer.append("Skipping file (not a file or doesn't exist " + path.toString());
+                buffer.append("Skipping file (not a file or doesn't exist ").append(path.toString()).append("\n");
             }
         }
         buffer.append("total: lines ").append(totalLines).append(", RaSa ").append(totalRasa).append("\n");
