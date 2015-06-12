@@ -37,6 +37,7 @@ public class RaSaCalculator {
 			for (File file : files) {
 
 				if (file.exists()) {
+					String fileName = file.getName();
 
 					BufferedReader reader = null;
 					try {
@@ -64,8 +65,8 @@ public class RaSaCalculator {
 								}
 							}
 						}
-						results.put(file.getName(), complexity);
-						lines.put(file.getName(), lineCount);
+						System.out.println(fileName + ": lines " + lineCount
+								+ ", RaSa " + complexity);
 					} catch (IOException e) {
 						e.printStackTrace();
 					} finally {
@@ -80,24 +81,11 @@ public class RaSaCalculator {
 		}
 	}
 
-	public void printResults() {
-		Iterator<String> it = results.keySet().iterator();
-
-		while (it.hasNext()) {
-			String key = it.next();
-			Integer complexity = results.get(key);
-			Integer statementCount = lines.get(key);
-			System.out.println(key + ": lines " + statementCount + ", RaSa "
-					+ complexity);
-		}
-	}
-
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		RaSaCalculator calculator = new RaSaCalculator(args);
 		calculator.processFiles();
-		calculator.printResults();
 	}
 }
