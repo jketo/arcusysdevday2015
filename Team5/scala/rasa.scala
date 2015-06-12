@@ -5,19 +5,21 @@ import scala.io.Source
 
 object ScalaApp {
 
+  case class FileResult(file: String, lines: Int, rasa: Int)
+
   def main(args: Array[String]) {
     val results = args.map(calculateFile)
 
-    results.foreach { case (file, lines, rasa) =>
-      println(s"$file: lines: $lines, RaSa: $rasa")
+    results.foreach { r =>
+      println(s"${r.file}: lines: ${r.lines}, RaSa: ${r.rasa}")
     }
 
-    println(s"total: lines ${results.map(_._2).sum}, Rasa ${results.map(_._3).sum}")
+    println(s"total: lines ${results.map(_.lines).sum}, Rasa ${results.map(_.rasa).sum}")
   }
 
   def calculateFile(file: String) = {
     val (lines, rasa) = calculate(Source.fromFile(file), 0, 0, 0)
-    (file, lines, rasa)
+    FileResult(file, lines, rasa)
   }
 
   @tailrec
