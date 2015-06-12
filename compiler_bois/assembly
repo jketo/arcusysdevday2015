@@ -1,0 +1,159 @@
+             	.Ltext0:
+             		.section	.rodata
+             	.LC0:
+0000 7200     		.string	"r"
+0002 00000000 		.align 8
+     0000
+             	.LC1:
+0008 4572726F 		.string	"Error while opening the file.\n"
+     72207768 
+     696C6520 
+     6F70656E 
+     696E6720 
+             	.LC2:
+0027 72657375 		.string	"result: %d\n"
+     6C743A20 
+     25640A00 
+             	.LC3:
+0033 746F7461 		.string	"total: %d\n"
+     6C3A2025 
+     640A00
+             		.text
+             		.globl	main
+             	main:
+             	.LFB0:
+             		.cfi_startproc
+0000 55       		pushq	%rbp
+             		.cfi_def_cfa_offset 16
+             		.cfi_offset 6, -16
+0001 4889E5   		movq	%rsp, %rbp
+             		.cfi_def_cfa_register 6
+0004 4883EC60 		subq	$96, %rsp
+0008 897DAC   		movl	%edi, -84(%rbp)
+000b 488975A0 		movq	%rsi, -96(%rbp)
+000f 64488B04 		movq	%fs:40, %rax
+     25280000 
+     00
+0018 488945F8 		movq	%rax, -8(%rbp)
+001c 31C0     		xorl	%eax, %eax
+001e C745B800 		movl	$0, -72(%rbp)
+     000000
+0025 C745BC00 		movl	$0, -68(%rbp)
+     000000
+002c C745B801 		movl	$1, -72(%rbp)
+     000000
+0033 E9DA0000 		jmp	.L2
+     00
+             	.L8:
+             	.LBB2:
+0038 8B45B8   		movl	-72(%rbp), %eax
+003b 4898     		cltq
+003d 488D14C5 		leaq	0(,%rax,8), %rdx
+     00000000 
+0045 488B45A0 		movq	-96(%rbp), %rax
+0049 4801D0   		addq	%rdx, %rax
+004c 488B00   		movq	(%rax), %rax
+004f 4889C7   		movq	%rax, %rdi
+0052 B8000000 		movl	$0, %eax
+     00
+0057 E8000000 		call	printf
+     00
+005c 8B45B8   		movl	-72(%rbp), %eax
+005f 4898     		cltq
+0061 488D14C5 		leaq	0(,%rax,8), %rdx
+     00000000 
+0069 488B45A0 		movq	-96(%rbp), %rax
+006d 4801D0   		addq	%rdx, %rax
+0070 488B00   		movq	(%rax), %rax
+0073 BE000000 		movl	$.LC0, %esi
+     00
+0078 4889C7   		movq	%rax, %rdi
+007b E8000000 		call	fopen
+     00
+0080 488945C8 		movq	%rax, -56(%rbp)
+0084 48837DC8 		cmpq	$0, -56(%rbp)
+     00
+0089 7514     		jne	.L3
+008b BF000000 		movl	$.LC1, %edi
+     00
+0090 E8000000 		call	perror
+     00
+0095 BF010000 		movl	$1, %edi
+     00
+009a E8000000 		call	exit
+     00
+             	.L3:
+009f C745C001 		movl	$1, -64(%rbp)
+     000000
+00a6 C745C400 		movl	$0, -60(%rbp)
+     000000
+00ad EB24     		jmp	.L4
+             	.L7:
+00af 807DB77B 		cmpb	$123, -73(%rbp)
+00b3 7506     		jne	.L5
+00b5 8345C001 		addl	$1, -64(%rbp)
+00b9 EB18     		jmp	.L4
+             	.L5:
+00bb 807DB77D 		cmpb	$125, -73(%rbp)
+00bf 7506     		jne	.L6
+00c1 836DC001 		subl	$1, -64(%rbp)
+00c5 EB0C     		jmp	.L4
+             	.L6:
+00c7 807DB73B 		cmpb	$59, -73(%rbp)
+00cb 7506     		jne	.L4
+00cd 8B45C0   		movl	-64(%rbp), %eax
+00d0 0145C4   		addl	%eax, -60(%rbp)
+             	.L4:
+00d3 488B45C8 		movq	-56(%rbp), %rax
+00d7 4889C7   		movq	%rax, %rdi
+00da E8000000 		call	fgetc
+     00
+00df 8845B7   		movb	%al, -73(%rbp)
+00e2 807DB7FF 		cmpb	$-1, -73(%rbp)
+00e6 75C7     		jne	.L7
+00e8 488B45C8 		movq	-56(%rbp), %rax
+00ec 4889C7   		movq	%rax, %rdi
+00ef E8000000 		call	fclose
+     00
+00f4 8B45C4   		movl	-60(%rbp), %eax
+00f7 89C6     		movl	%eax, %esi
+00f9 BF000000 		movl	$.LC2, %edi
+     00
+00fe B8000000 		movl	$0, %eax
+     00
+0103 E8000000 		call	printf
+     00
+0108 8B45C4   		movl	-60(%rbp), %eax
+010b 0145BC   		addl	%eax, -68(%rbp)
+             	.LBE2:
+010e 8345B801 		addl	$1, -72(%rbp)
+             	.L2:
+0112 8B45B8   		movl	-72(%rbp), %eax
+0115 3B45AC   		cmpl	-84(%rbp), %eax
+0118 0F8C1AFF 		jl	.L8
+     FFFF
+011e 8B45BC   		movl	-68(%rbp), %eax
+0121 89C6     		movl	%eax, %esi
+0123 BF000000 		movl	$.LC3, %edi
+     00
+0128 B8000000 		movl	$0, %eax
+     00
+012d E8000000 		call	printf
+     00
+0132 B8000000 		movl	$0, %eax
+     00
+0137 488B4DF8 		movq	-8(%rbp), %rcx
+013b 6448330C 		xorq	%fs:40, %rcx
+     25280000 
+     00
+0144 7405     		je	.L10
+0146 E8000000 		call	__stack_chk_fail
+     00
+             	.L10:
+014b C9       		leave
+             		.cfi_def_cfa 7, 8
+014c C3       		ret
+             		.cfi_endproc
+             	.LFE0:
+             	.Letext0:
+

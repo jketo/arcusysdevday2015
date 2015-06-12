@@ -73,8 +73,8 @@ c) Complex a
 Team awards (these may change) by simple counting.
 
 * Award for most languages used
-* Award for least lines of code !!! Stuffing your code to one line does not count
-* Award for most lines of code !!! Expanding your code with empty space does not count
+* Award for least characters of code
+* Award for most characters of code
 
 Personal award's for panel by peer's (all of us). Voting by raising the hand.
 
