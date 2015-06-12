@@ -7,11 +7,11 @@ NOTE! The actual problem will be presented right at the devday.
 # THE TASK
 
 * The task is simple RaSa -algorithm (modified from famous Joensuu University professors, Raimo Rask and Jorma Sajaniemi, C complexity calculator).
-* The purpose of the algorithm is to estimate the complexness of Java source code files.
+* The purpose of the algorithm is to estimate the complexness of Java -source code files.
 * The complessness is calculated in a following way: 
-** Calculate each statement ending with ";". Each block { }, increments the RaSa sum by bolck depth * number of statements inside that block. Thus { ; } is of depth 2 with one statement.
+** Calculate each statement ending with ";". Each block inside another block { }, increments the RaSa depth multiplier by 1. Thus { ; } is of depth 2 with one statement = 2 * 1.
 ** Level 1 is statements outside blocks, like java import -statements.
-** Levels 2...N is statements inside blocks
+** Levels 2...N are statements inside blocks
 
 
 # THE WORKING PROGRAM
@@ -68,5 +68,17 @@ c) Complex a
 * RaSa sum is: 12
 
 
-    
+# GLORYHUNT
+
+Team awards (these may change) by simple counting.
+
+* Award for most languages used
+* Award for least lines of code !!! Stuffing your code to one line does not count
+* Award for most lines of code !!! Expanding your code with empty space does not count
+
+Personal award's for panel by peer's (all of us). Voting by raising the hand.
+
+* Award for most obscure code
+* Award for most clean code
+* Award for most awesome solution    
 
