@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+tl = 0
+tc = 0
 ARGV.each do|a|
   content = ''
   File.open(a).each do |line|
@@ -17,10 +19,13 @@ ARGV.each do|a|
     end
     if i == ";"
       complexity = complexity + depth
+      tc = tc + depth
     end
     if i == "\n"
       lines = lines + 1
+      tl = tl + 1
     end
   end
   puts "file #{a}: lines: #{lines} RaSa: #{complexity}"
 end
+puts "total lines: #{tl} RaSa: #{tc}"
