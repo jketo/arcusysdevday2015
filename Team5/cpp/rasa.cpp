@@ -8,7 +8,7 @@ int main (int argc, char *argv[])
  int summaryRasa = 0;
  int totalLines = 0;
 
- for (i = 0; i < argc; i++) cout << "argv[" << i << "] содержит " << argv[i] << endl; {
+ for (i = 0; i < argc; i++) {
  	ifstream fin(argv[i], std::ios::in);
  	int rasa = 0;
  	int lines = 0;
