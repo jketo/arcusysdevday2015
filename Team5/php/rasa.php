@@ -1,8 +1,16 @@
 <?php
+$totalLines = 0;
+$totalRasa = 0;
 for($i = 1; isset($argv[$i]); $i++) {
     $file = $argv[$i];
-    echo "$file: lines " . count(file($file)) . ", RaSa " .rasa(file_get_contents($file), 1)."\n";
+    $lines =  count(file($file));
+    $rasa = rasa(file_get_contents($file), 1);
+    $totalLines += $lines;
+    $totalRasa += $rasa;
+    echo "$file: lines " . $lines . ", RaSa " . $rasa ."\n";
+
 }
+echo "total: lines $totalLines, RaSa $totalRasa \n";
 
 function rasa($code, $depth)
 {
