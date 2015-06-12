@@ -1,7 +1,7 @@
 class Calculate
   def initialize(file)
     @res = calculate(file)
-    puts "#{file}: lines #{res[0]}, RaSa: #{res[1]}"
+    puts "#{file}: lines #{@res[0]}, RaSa: #{@res[1]}"
   end
 
   def res
