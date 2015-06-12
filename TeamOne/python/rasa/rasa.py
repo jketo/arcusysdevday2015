@@ -1,4 +1,3 @@
-__author__ = 'ville'
 import sys
 
 def count_files():
@@ -7,6 +6,7 @@ def count_files():
     for filename in filenames:
         f = open(filename)
         complexity += count_rasa(f)
+        f.close()
     print complexity
 
 def count_rasa(f):
