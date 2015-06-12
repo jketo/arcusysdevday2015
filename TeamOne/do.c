@@ -4,8 +4,8 @@
 
 int timer=1;
 int lines=0;
-int rask=0;
-int allLines=0;
+int totalRask=0;
+int totalLines=0;
 
 void DoRasa(char *file) {
     int timer=1;
@@ -38,7 +38,9 @@ void DoRasa(char *file) {
         }
     }
     rask += lines * timer;
-    fclose(f);  
+    fclose(f);
+    totalLines+=allLines;
+    totalRask+=rask;  
     printf("%s: lines %d, Rasa %d\n", file, allLines, rask);
 }
 
@@ -48,5 +50,6 @@ int main(int argc, char**argv) {
         DoRasa(argv[i]);
         ++i;
     }
+    printf("Total: lines %d, Rasa %d\n", totalLines, totalRask);
 }
 
