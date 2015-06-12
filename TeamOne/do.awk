@@ -21,9 +21,14 @@ ENDFILE {
 }
 
 END {
+    lines=0;
+    rasa=0;
     for (var in File) {
+        lines+=Lines[var];
+        rasa+=Rask[var];
         print File[var], ": lines ", Lines[var], ", RaSa ", Rask[var];
     }
+    print "Total: lines ", lines, ", Rasa ", rasa;
 }
 
 {
