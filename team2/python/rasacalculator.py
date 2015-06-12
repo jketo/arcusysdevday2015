@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-import argparse, logging
+import argparse
 
 
 def calculateFileRasa(filePath):
@@ -19,10 +18,10 @@ def calculateFileRasa(filePath):
     return (rowCount, rasa)
 
 
-def calculateRasa(filePaths):
+def main(args):
     totalRows = 0
     totalRasa = 0
-    for filePath in filePaths:
+    for filePath in args.argument:
         rowCount, rasa = calculateFileRasa(filePath)
         totalRows += rowCount
         totalRasa += rasa
@@ -30,25 +29,7 @@ def calculateRasa(filePaths):
     print 'total: lines %d, RaSa: %d' % (totalRows, totalRasa)
 
 
-def main(args, loglevel):
-    logging.basicConfig(format="%(levelname)s: %(message)s", level=loglevel)
-    logging.debug("Your Arguments: %s" % args.argument)
-    calculateRasa(args.argument)
-
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Does a thing to some stuff.")
+    parser = argparse.ArgumentParser()
     parser.add_argument('argument', nargs='*')
-    parser.add_argument("-v",
-                        "--verbose",
-                        help="increase output verbosity",
-                        action="store_true")
-    args = parser.parse_args()
-
-    # Setup logging
-    if args.verbose:
-        loglevel = logging.DEBUG
-    else:
-        loglevel = logging.INFO
-
-    main(args, loglevel)
+    main(parser.parse_args())
