@@ -3,8 +3,9 @@ var totalLines = 0;
 var totalRasa = 0;
 process.argv.forEach(function (val, index, array) {
   if(index > 1) {
+  	var lines;
   	fs.open(val, 'r', function(err, fd) {
-  		var lines = fd;
+  		lines = fd;
   		totalLines += fd;
   	});
   	fs.readFile(val, 'utf8', function (err,data) {
@@ -12,15 +13,13 @@ process.argv.forEach(function (val, index, array) {
 	    return console.log(err);
 	  }
 	  var rasaScore = rasa(data, 1);
-	  var lines = 0;
 	  totalRasa += rasaScore;
-	  // totalLines += lines;
-
 	  console.log(val + ": lines " + lines + ", RaSa " + rasaScore);
 	});
+  } else if (index +1=== array.length) {
+  	console.log("total: lines " + totalLines + ", RaSa " + totalRasa);
   }
 });
-console.log("total: lines " + totalLines + ", RaSa " + totalRasa);
 function rasa(code, depth) {
 	var stms = 0;
 	var rasaScore = 0;
