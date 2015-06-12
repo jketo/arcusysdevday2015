@@ -1,11 +1,12 @@
-class Calculate
-  def initialize(file)
-    @res = calculate(file)
-    puts "#{file}: lines #{@res[0]}, RaSa: #{@res[1]}"
-  end
+#!/usr/bin/env ruby -w
 
-  def res
-    @res
+class Calculate
+  attr_accessor :res
+
+
+  def initialize(file)
+    res = calculate(file)
+    puts "#{file}: lines #{res[0]}, RaSa: #{res[1]}"
   end
 
   def calculate(file, dept = 1, sum = 0, lines = 0)
@@ -18,7 +19,7 @@ class Calculate
           sum += dept if (sym == ';')
         end
       end
-      res = [lines, sum] of Int32
+      res = [lines, sum]
     end
   end
 end

@@ -15,8 +15,6 @@ public class CodeComplexityController {
     }
 
     /**
-     * curl -i -F file=@filu1.txt -F file=@filu2.txt http://localhost:8080/process
-     *
      * @param files
      * @return
      * @throws IOException
@@ -31,7 +29,7 @@ public class CodeComplexityController {
 
         Arrays.asList(files).forEach(file -> {
             try {
-                str.append(new String(file.getBytes(), "UTF-8"));
+                str.append(analyzeComplexity(new String(file.getBytes(), "UTF-8")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -41,5 +39,31 @@ public class CodeComplexityController {
 
         return str.toString();
 
+    }
+
+    String analyzeComplexity(String source) {
+        int index = 0;
+        int level = 1;
+        int count = 0;
+        int rasaScore = 0;
+        String result;
+        while (index < source.length()) {
+            if (source.charAt(index) == '{') {
+                level++;
+            } else if (source.charAt(index) == '}') {
+                level--;
+            } else if (source.charAt(index) == ';') {
+                count++;
+                if (level > 3)
+                    rasaScore = rasaScore + 3;
+                else rasaScore = rasaScore + level;
+            }
+
+            index++;
+        }
+
+        result = "java: lines " + count + ", RaSa " + rasaScore;
+
+        return result;
     }
 }
