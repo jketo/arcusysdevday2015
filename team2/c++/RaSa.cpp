@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <algorithm>
+
+using namespace std;
 
 void processFile(int& lines, int& complexity, const char* path) {
-	std::string line;
-	std::ifstream infile(path);
+	string line;
+	ifstream infile(path);
 	int depth = 1;
-	while (std::getline(infile, line))
+	while (getline(infile, line))
 	{
 		for (int i = 0; i < line.length(); ++i) {
 			if (line[i] == '{') {
@@ -22,7 +23,7 @@ void processFile(int& lines, int& complexity, const char* path) {
 		}
 		lines++;
 	}
-	std::cout << "file: " << path << " lines: " << lines << " RaSa: " << complexity << std::endl;
+	cout << "file: " << path << " lines: " << lines << " RaSa: " << complexity << endl;
 }
 
 int main(int argc, char** argv) {
@@ -33,5 +34,5 @@ int main(int argc, char** argv) {
 		tl += lines;
 		tc += complexity;
 	}
-	std::cout << "total lines: " << tl << " RaSa: " << tc << std::endl;
+	cout << "total lines: " << tl << " RaSa: " << tc << endl;
 }
