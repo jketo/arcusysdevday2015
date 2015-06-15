@@ -4,10 +4,11 @@
 
 using namespace std;
 
-void processFile(int& lines, int& complexity, const char* path) {
+void processFile(int& tl, int& tc, const char* path) {
 	string line;
 	ifstream infile(path);
 	int depth = 1;
+	int lines = 0; int complexity = 0;
 	while (getline(infile, line))
 	{
 		for (int i = 0; i < line.length(); ++i) {
@@ -24,15 +25,13 @@ void processFile(int& lines, int& complexity, const char* path) {
 		lines++;
 	}
 	cout << "file: " << path << " lines: " << lines << " RaSa: " << complexity << endl;
+	tl += lines; tc += complexity;
 }
 
 int main(int argc, char** argv) {
 	int tl = 0; int tc = 0;
 	for (int i = 1; i < argc; ++i) {
-		int lines = 0; int complexity = 0;
-		processFile(lines, complexity, *(argv + i));
-		tl += lines;
-		tc += complexity;
+		processFile(tl, tc, *(argv + i));
 	}
 	cout << "total lines: " << tl << " RaSa: " << tc << endl;
 }
