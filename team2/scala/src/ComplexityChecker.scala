@@ -1,10 +1,9 @@
 object ComplexityChecker {
 
-
   def calculate(content: String) : (Int, Int) = {
     var complexity = 0
     var depth = 1
-    var statements = 0;
+    var lines = 0
     for (c <- content) {
       if (c == '{') {
         depth += 1
@@ -13,22 +12,33 @@ object ComplexityChecker {
         depth -= 1
       }
       if (c == ';') {
-        statements += 1
         complexity += depth
       }
+      if (c == '\n') {
+        lines += 1
+      }
     }
-    (complexity, statements)
+    (complexity, lines)
   }
 
-  def processFile(path: String) = {
+  def processFile(path: String) : (Int, Int) = {
     val source = scala.io.Source.fromFile(path)
-    val lines = try source.mkString finally source.close()
-    val (complexity, statements) = calculate(lines)
-    println("file" + path + ": lines: " + statements + " RaSa: " + complexity)
+    val content = try source.mkString finally source.close()
+    val (complexity, lines) = calculate(content)
+    println("file" + path + ": lines: " + lines + " RaSa: " + complexity)
+    (complexity, lines)
   }
 
   def main(args: Array[String]) {
-    args.foreach(processFile)
+    var tc = 0
+    var tl = 0
+    for (arg <- args) {
+      val r = processFile(arg)
+      tc += r._2
+      tl += r._1
+    }
+    //val totals = args.map((arg) => processFile(arg))
+    println("total lines: " + tl + " RaSa: " + tc)
   }
 
 }

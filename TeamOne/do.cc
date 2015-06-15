@@ -1,23 +1,23 @@
-#include <stdio.h> 
-#include <stdlib.h>
-#include <string.h>
+#include <iostream> 
+#include <fstream>
 
-int timer=1;
-int lines=0;
-int totalRask=0;
+using namespace std;
+
 int totalLines=0;
+int totalRask=0;
 
-void DoRasa(char *file) {
+void DoRasa(string file) {
     int timer=1;
     int lines=0;
     int rask=0;
     int allLines=0;
-    char line[1024] = {0};
-    FILE *f = fopen(file, "r");
-    while ( fgets(line, 1024, f)) {
+    string line;
+    ifstream fin;
+    fin.open(file.c_str(), ios::in);
+    while ( getline(fin, line)) {
         allLines++;
         int i = 0;
-        while (i < strlen(line)) {
+        while (i < line.length()) {
             char c = line[i];
             if (c == ';') {
                 lines++;
@@ -38,10 +38,8 @@ void DoRasa(char *file) {
         }
     }
     rask += lines * timer;
-    fclose(f);
-    totalLines+=allLines;
-    totalRask+=rask;  
-    printf("%s: lines %d, Rasa %d\n", file, allLines, rask);
+    fin.close();  
+    cout << file << ": lines " << allLines << " , Rasa " << rask << endl;
 }
 
 int main(int argc, char**argv) {
@@ -50,6 +48,5 @@ int main(int argc, char**argv) {
         DoRasa(argv[i]);
         ++i;
     }
-    printf("Total: lines %d, Rasa %d\n", totalLines, totalRask);
 }
 
